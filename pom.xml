@@ -5,14 +5,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>HttpSrv</artifactId>
+  <artifactId>HttpServer</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <fully.qualified.main.class>com.cottagecoders.example.HttpSrv</fully.qualified.main.class>
+    <fully.qualified.main.class>com.cottagecoders.example.HttpServer</fully.qualified.main.class>
     <slf4jVersion>1.7.30</slf4jVersion>
   </properties>
 
