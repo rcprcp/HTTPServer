@@ -13,8 +13,8 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class HttpSrv {
-  private static final Logger LOG = LoggerFactory.getLogger(HttpSrv.class);
+public class HTTPServer {
+  private static final Logger LOG = LoggerFactory.getLogger(HTTPServer.class);
   static boolean DEBUG = false;
   static boolean NULL = false;
   private static int PORT = 8085;

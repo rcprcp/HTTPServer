@@ -48,7 +48,7 @@ class Handlers implements HttpHandler {
 
     String str = br.lines().collect(Collectors.joining(System.lineSeparator()));
 
-    if (HttpSrv.DEBUG) {
+    if (HTTPServer.DEBUG) {
       Headers h = httpExchange.getRequestHeaders();
       for (Map.Entry<String, List<String>> e : h.entrySet()) {
         LOG.debug("request header {} / {}", e.getKey(), e.getValue());
@@ -58,16 +58,15 @@ class Handlers implements HttpHandler {
     final String SOAP = "<soap:Envelope xmlns:soap=http://schemas.xmlsoap.org/soap/envelope/>\n" + "    <soap:Body>\n"
         + "        " + "<soap:Fault>\n" + "            <faultcode>soap:1028</faultcode>\n" + "            " +
         "<faultstring>Response is " + "not available for version 20201006040025.</faultstring>\n" + "            " +
-        "<detail>\n" + "                " + "<Code>1028</Code>\n" + "                <param>20201006040025</param>\n" + "            </detail>\n" + "    " + "    </soap:Fault>\n" + "    </soap:Body>\n" + "</soap:Envelope>";
+        "<detail>\n" + "                " + "<Code>1028</Code>\n" + "                <param>20201006040025</param>\n" + "            </detail>\n" + "    " + "    </soap:Fault>\n" + "    </soap:Body>\n" + "</soap:Envelope>\n\n";
     try {
       httpExchange.sendResponseHeaders(500, SOAP.length());
       LOG.info("payload length {}, payload: {}", SOAP.length(), SOAP);
       OutputStream outputStream = httpExchange.getResponseBody();
       outputStream.write(SOAP.getBytes(StandardCharsets.UTF_8));
-
-      outputStream.write("\n".getBytes(StandardCharsets.UTF_8));
       outputStream.flush();
       outputStream.close();
+
     } catch (IOException ex) {
       LOG.error("IOException on sendResponseHeaders {}", ex.getMessage(), ex);
     }
@@ -75,7 +74,7 @@ class Handlers implements HttpHandler {
 
   String arrayOfDummyData() {
     StringBuilder sb = new StringBuilder();
-    if (HttpSrv.NULL && pageNumber == 5) {
+    if (HTTPServer.NULL && pageNumber == 5) {
       pageNumber = 1;
       return "{results: []}";
     }
@@ -116,7 +115,7 @@ class Handlers implements HttpHandler {
     String str = br.lines().collect(Collectors.joining(System.lineSeparator()));
     LOG.debug("request body '{}'", str);
 
-    if (HttpSrv.DEBUG) {
+    if (HTTPServer.DEBUG) {
       Headers h = httpExchange.getRequestHeaders();
       for (Map.Entry<String, List<String>> e : h.entrySet()) {
         LOG.debug("request header {} / {}", e.getKey(), e.getValue());
