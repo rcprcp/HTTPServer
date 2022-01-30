@@ -5,8 +5,8 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class HTTPServer {
-  private static final Logger LOG = LoggerFactory.getLogger(HTTPServer.class);
+  private static final Logger LOG = LogManager.getLogger(HTTPServer.class);
   static boolean DEBUG = false;
   static boolean NULL = false;
   private static int PORT = 8085;
@@ -22,6 +22,7 @@ public class HTTPServer {
 
   public static void main(String... args) throws IOException {
     ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
+    LOG.info("Starting.");
 
     // handle args.
     // create Options object
@@ -58,7 +59,7 @@ public class HTTPServer {
     }
     if (cmd.hasOption("p")) {
       try {
-        PORT= Integer.parseInt(cmd.getOptionValue("p"));
+        PORT = Integer.parseInt(cmd.getOptionValue("p"));
       } catch (NumberFormatException ex) {
         LOG.error("Exception: {}", ex.getMessage(), ex);
         System.exit(6);

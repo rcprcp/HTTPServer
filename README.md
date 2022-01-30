@@ -1,5 +1,5 @@
 # HttpServer
-Mock HTTP server for troublehooring, testing and debugging HTTP Client issues.
+Mock HTTP server for troublehooting, testing and debugging HTTP Client issues.
 
 Trying to only use standard Java libraries.  This program is using  com.sun.net.httpserver and java.net  - currently the only external libraries are for JSON parsing the to support log4j output.
 
